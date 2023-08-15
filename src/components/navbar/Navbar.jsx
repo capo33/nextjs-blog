@@ -1,5 +1,8 @@
-import Link from 'next/link';
-import React from 'react'
+'use client';
+import Link from "next/link";
+import React from "react";
+
+import styles from "./navbar.module.css";
 
 const links = [
   {
@@ -36,17 +39,22 @@ const links = [
 
 const Navbar = () => {
   return (
-    <div>
-      <Link href={'/'}>
-      Logo
+    <div className={styles.container}>
+      <Link href={"/"} className={styles.logo}>
+        Logo
       </Link>
-      {links.map((link) => (
-        <Link href={link.url} key={link.id}>
-          {link.title}
-        </Link>
-      ))}
+      <div className={styles.links}>
+        {links.map((link) => (
+          <Link href={link.url} key={link.id}>
+            {link.title}
+          </Link>
+        ))}
+        <button className={styles.logout} onClick={() => console.log("logout")}>
+          Logout
+        </button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
