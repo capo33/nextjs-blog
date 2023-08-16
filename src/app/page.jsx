@@ -16,7 +16,6 @@ export default function Home() {
           of the marketing for you.
         </p>
         <Button text='See Our Work' url='/portfolio' />
-        <button className={styles.button}>See Our Work</button>
       </div>
       <div className={styles.item}>
         <Image src={Hero} alt='Picture of the author' className={styles.img} />
