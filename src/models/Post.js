@@ -1,4 +1,6 @@
-import { Schema } from "mongoose";
+import mongoose from "mongoose";
+
+const { Schema } = mongoose;
 
 const postSchema = new Schema(
   {
@@ -8,7 +10,6 @@ const postSchema = new Schema(
     },
     desc: {
       type: String,
-      unique: true,
       required: true,
     },
     img: {
@@ -24,9 +25,8 @@ const postSchema = new Schema(
       required: true,
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-export default model("Post", postSchema);
+//If the Post collection does not exist create a new one.
+export default mongoose.models.Post || mongoose.model("Post", postSchema);

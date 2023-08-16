@@ -4,18 +4,24 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 const getData = async (id) => {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${id}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     return notFound();
   }
   return response.json();
 };
+
+// dynamic metadata 
+export async function generateMetadata({ params }) {
+  const post = await getData(params.id);
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+}
 
 const BlogPost = async ({ params }) => {
   const { id } = params;

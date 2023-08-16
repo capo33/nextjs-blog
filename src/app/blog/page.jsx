@@ -5,11 +5,11 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 const getData = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+  const response = await fetch("http://localhost:3000/api/posts", {
     cache: "no-store",
   });
   if (!response.ok) {
-    return notFound()
+    return notFound();
   }
   return response.json();
 };
@@ -23,12 +23,11 @@ const Blog = async () => {
         <Link
           href={`/blog/${item._id}`}
           className={styles.container}
-          key={item.id}
+          key={item._id}
         >
           <div className={styles.imageContainer}>
             <Image
-              // src={item.img}
-              src='https://images.unsplash.com/photo-1692131563662-da2d901afbc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80'
+              src={item.img}
               alt=''
               width={400}
               height={250}
